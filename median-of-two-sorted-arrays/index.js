@@ -34,35 +34,42 @@ var findMedianSortedArrays = function (nums1, nums2) {
     var m1 = helper.getMiddleIndex(size1);
     var m2 = helper.getMiddleIndex(size2);
 
-    var k = helper.getMiddleIndex(size1 + size2);
+    /** total length from two array */
+    var totalLength = size1 + size2;
 
-    var upper = nums1[m1];
-    var lower = nums2[m2];
-    /** move m2 if less than m1 to find lower value from seconds parameters */
+    /** _start_nums1 */
+    var _start_nums1 = 0; 
+    var _end_nums1 = size1;
+    var l1, r1, l2, r2;
+    while (_start_nums1 < _end_nums1) {
+        var middle1 = Math.floor(_start_nums1 + _end_nums1 / 2);
+        var middle2 = Math.floor((totalLength + 1) / 2) - middle1;
 
-    // && m1 <= size1 && m2 > 0
-    //  &&  m1 < size1 && m2 > 0
-    while (upper < lower) {
-        m2 = m2 - 1;
-        if (0 <= m2) {
-            lower = nums2[m2];
-        }
-        m1 = m1 + 1;
-        if (size1-1 >= m1) {
-            upper = nums1[m1];
-        }
+        console.log('middle and size:', size1, middle1, size2, middle2);
+        console.log('while loop:', totalLength, nums1, nums2 , _start_nums1, _end_nums1);
+
+        /** in order to ensure use propert mininum and maxium value to compare */
+        l1 = middle1 === 0 ? Number.MIN_SAFE_INTEGER : nums1[middle1-1];
+        r1 = middle1 === size1 ? Number.MAX_SAFE_INTEGER : nums1[middle1];
+        l2 = middle2 === 0 ? Number.MIN_SAFE_INTEGER : nums2[middle2-1];
+        r2 = middle2 === size2 ? Number.MAX_SAFE_INTEGER : nums2[middle2];
         
-        if (size1-1 < m1 && m2 === 0) {
+        console.log('l r values', l1, l2, r1, r2);
+
+        /** update nums1 start and end */
+        if (l1 > r2) {
+            _end_nums1 = middle1 -1;
+        } else if (l2 > r1) {
+            _start_nums1 = middle1 + 1;
+        } else {
             break;
         }
     }
-    
-    console.log('while k value:', k, m2, upper ,lower);
-    
-    console.log(m1, m2, nums1, nums2 , upper, lower);
 
-    return  (upper+lower) / 2;
+    console.log('testing', l1, l2, r1, r2);
+
+    return helper.isEven(totalLength) ? (Math.max(l1, l2) + Math.min(r1, r2))/2 : Math.max(l1, l2);
+    
 };
 
 module.exports = findMedianSortedArrays;
-
