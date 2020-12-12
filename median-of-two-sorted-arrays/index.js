@@ -42,7 +42,8 @@ var findMedianSortedArrays = function (nums1, nums2) {
     var _end_nums1 = size1;
     var l1, r1, l2, r2;
     while (_start_nums1 < _end_nums1) {
-        var middle1 = Math.floor(_start_nums1 + _end_nums1 / 2);
+        /** ensure middle1 is getting more than 1 middle2 */
+        var middle1 = Math.ceil(_start_nums1 + _end_nums1 / 2);
         var middle2 = Math.floor((totalLength + 1) / 2) - middle1;
 
         console.log('middle and size:', size1, middle1, size2, middle2);
@@ -62,6 +63,7 @@ var findMedianSortedArrays = function (nums1, nums2) {
         } else if (l2 > r1) {
             _start_nums1 = middle1 + 1;
         } else {
+            console.log('break: ', l1, r1, r2, l2);
             break;
         }
     }
