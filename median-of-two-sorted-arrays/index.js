@@ -49,10 +49,10 @@ var findMedianSortedArrays = function (nums1, nums2) {
         console.log('middle and size:', size1, middle1, size2, middle2);
         console.log('while loop:', totalLength, nums1, nums2 , _start_nums1, _end_nums1);
 
-        l1 = middle1 === 0 ? 0 : nums1[middle1-1];
-        r1 = middle1 === size1 ? nums1[size1-1] : nums1[middle1];
-        l2 = middle2 === 0 ? 0 : nums2[middle2-1];
-        r2 = middle2 === size2 ? nums2[size2-1] : nums2[middle2];
+        l1 = middle1 === 0 ? Number.MIN_SAFE_INTEGER : nums1[middle1-1];
+        r1 = middle1 === size1 ? Number.MAX_SAFE_INTEGER : nums1[middle1];
+        l2 = middle2 === 0 ? Number.MIN_SAFE_INTEGER : nums2[middle2-1];
+        r2 = middle2 === size2 ? Number.MAX_SAFE_INTEGER : nums2[middle2];
         
         console.log('l r values', l1, l2, r1, r2);
 
@@ -69,11 +69,6 @@ var findMedianSortedArrays = function (nums1, nums2) {
 
     var upper = Math.max(l1, l2);
     var lower = Math.min(r1, r2);
-
-    /** change upper if greater than nums2 array */
-    if (upper > nums2[size2-1]) {
-        upper = nums2[size2-1];
-    }
 
     console.log('testing upper and lower', upper, lower, Math.min(upper, lower), upper+lower);
     
