@@ -13,6 +13,7 @@
 ## Notice
 
 * 需要加上srand(time(0))的方法來讓每次編譯後的結果不同
+* scanf()要使用傳址的方式傳入參數
 
 ## Reference
 
