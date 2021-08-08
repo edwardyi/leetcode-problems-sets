@@ -6,37 +6,28 @@ int main()
 
     int counter = 0;
     
-    int id,
-        i;
+    int i;
 
     printf("Input 10 numbers: \n");
 
-    while (1) {
-        printf("%d:", counter+1);
-        scanf("%d", &id);
-        if (id == 0) {
-            break;
-        }
+    for (i=1; i<=10; i++) {
+        printf("%d:", i);
+        scanf("%d", &inputs[i-1]);
 
-        inputs[counter] = id;
         counter++;
     }
 
+    int inputId;
+
     while (1) {
         printf("Q:");
-        scanf("%d", &id);
-        if (id == -1) {
+        scanf("%d", &inputId);
+        if (inputId == 0) {
             break;
         }
 
-        printf("%d \n", inputs[id]);
+        printf("%d \n", inputs[inputId-1]);
     }
-
-    // for (i=0; i<10;i++) {
-    //     if (inputs[i]) {
-    //         printf("%d \n", inputs[i]);
-    //     }
-    // }
 
     return 0;
 }
