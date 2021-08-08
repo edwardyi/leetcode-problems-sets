@@ -1,0 +1,1 @@
+clear && clang $1 && ./a.out
