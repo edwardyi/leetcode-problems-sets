@@ -4,7 +4,7 @@ int main ()
 {
     int i, n[10];
     // printf("enter 10 numbers");
-    // 1 3 6 7 3 3 1 788 33 99
+    // ma
 
     for (i=1; i<=10; i++) {
         scanf("%d", &n[i-1]); // 1 2 3 ... 10
