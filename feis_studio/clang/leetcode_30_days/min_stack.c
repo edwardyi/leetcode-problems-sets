@@ -3,7 +3,7 @@
 
 typedef struct {
     int size;
-    // int data[1000]; // consume we have 1000 spaces to store data
+    // int data[1000]; // assume we have 1000 spaces to store data
     int *data;
     // use memory to save time
     int *min;
