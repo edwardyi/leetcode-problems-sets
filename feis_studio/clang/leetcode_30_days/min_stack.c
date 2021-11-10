@@ -34,7 +34,7 @@ void PushStack(Stack* s, int number) {
 
     // assign number
     s->data[s->size] = number;
-    if (s->size == 0 || s->min[s->size-1] < number) {
+    if (s->size == 0 || s->min[s->size-1] > number) {
         s->min[s->size] = number;
     } else {
         s->min[s->size] = s->min[s->size-1];
@@ -87,6 +87,10 @@ int main(void) {
     printf("%d \n", TopStack(s));
 
     PrintStack(s);
+
+    printf("size: %d \n", s->size);
+
+    printf("minimum number: %d \n", s->min[s->size-1]);
 
     DestoryStack(s);
     
